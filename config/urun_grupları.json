@@ -1,0 +1,502 @@
+{
+  "meta": {
+    "versiyon": "3.0.0",
+    "guncelleme_tarihi": "2026-07-29",
+    "kaynaklar": [
+      "GİB Vergi Türleri Listesi (Resmi)",
+      "KDV Genel Uygulama Tebliği",
+      "ÖTV Kanunu (I, II, III, IV Sayılı Listeler)",
+      "Damga Vergisi Kanunu",
+      "Harçlar Kanunu",
+      "Resmi Gazete (2026 Tebliğleri)"
+    ],
+    "toplam_kod": 312,
+    "aciklama": "Tüm vergi türleri, oranlar, GTİP eşleştirmeleri, sektörel kurallar ve istisnalar"
+  },
+  "vergi_turleri": {
+    "0015": {
+      "adi": "GERÇEK USULDE KATMA DEĞER VERGİSİ",
+      "tip": "KDV",
+      "oran_bazli": true,
+      "aciklama": "Mal ve hizmet teslimlerinde uygulanan genel vergi"
+    },
+    "0016": {
+      "adi": "BASİT USULDE KATMA DEĞER VERGİSİ",
+      "tip": "KDV",
+      "oran_bazli": true,
+      "aciklama": "Basit usul mükelleflerin KDV'si"
+    },
+    "0073": {
+      "adi": "ÖTV (GENEL KOD)",
+      "tip": "OTV",
+      "oran_bazli": false,
+      "aciklama": "Özel Tüketim Vergisi ana kodu"
+    },
+    "0075": {
+      "adi": "ÖTV - ALKOLLÜ İÇECEKLER",
+      "tip": "OTV",
+      "oran": "maktu",
+      "alt_grup": "I Sayılı Liste"
+    },
+    "0076": {
+      "adi": "ÖTV - TÜTÜN MAMÜLLERİ",
+      "tip": "OTV",
+      "oran": "maktu",
+      "alt_grup": "I Sayılı Liste"
+    },
+    "0077": {
+      "adi": "ÖTV - KOLALI GAZOZLAR",
+      "tip": "OTV",
+      "oran": "maktu",
+      "alt_grup": "I Sayılı Liste"
+    },
+    "0040": {
+      "adi": "DAMGA VERGİSİ",
+      "tip": "DAMGA",
+      "oran": 0.00759,
+      "aciklama": "Kâğıtlardan alınan vergi (binde 7,59)"
+    },
+    "0001": {
+      "adi": "GELİR VERGİSİ (GERÇEK USUL)",
+      "tip": "GELIR",
+      "oran": "15-40",
+      "dilimli": true
+    },
+    "0003": {
+      "adi": "MUHTASAR VERGİ (STOPAJ)",
+      "tip": "STOPAJ",
+      "oran": "degisken",
+      "aciklama": "Ücret, kira, serbest meslek ödemeleri"
+    },
+    "0010": {
+      "adi": "KURUMLAR VERGİSİ",
+      "tip": "KURUMLAR",
+      "oran": 25,
+      "aciklama": "Şirketler için kurumlar vergisi"
+    },
+    "0011": {
+      "adi": "KURUMLAR VERGİSİ (MUHTASAR)",
+      "tip": "KURUMLAR",
+      "oran": 25
+    },
+    "0012": {
+      "adi": "GELİR VERGİSİ (BASİT USUL)",
+      "tip": "GELIR",
+      "oran": "degisken"
+    },
+    "0021": {
+      "adi": "BANKALAR VERGİSİ",
+      "tip": "BANKAVERGI",
+      "oran": 0.05
+    },
+    "0022": {
+      "adi": "SİGORTA MUAMELELERİ VERGİSİ",
+      "tip": "BANKAVERGI",
+      "oran": 0.05
+    },
+    "0027": {
+      "adi": "GEÇİCİ VERGİ 1",
+      "tip": "GECICI",
+      "oran": "30/50/70"
+    },
+    "0032": {
+      "adi": "GEÇİCİ VERGİ 2",
+      "tip": "GECICI",
+      "oran": "30/50/70"
+    },
+    "0033": {
+      "adi": "GEÇİCİ VERGİ 3",
+      "tip": "GECICI",
+      "oran": "30/50/70"
+    },
+    "0048": {
+      "adi": "OYLAMA MAKİNESİ VERGİSİ",
+      "tip": "DIGER",
+      "oran": "maktu"
+    },
+    "0050": {
+      "adi": "OYUN KAĞITLARI VERGİSİ",
+      "tip": "DIGER",
+      "oran": "maktu"
+    },
+    "0053": {
+      "adi": "KURUMLAR VERGİSİ (GEÇİCİ)",
+      "tip": "KURUMLAR",
+      "oran": 25
+    },
+    "0056": {
+      "adi": "TALİH OYUNLARI VERGİSİ",
+      "tip": "DIGER",
+      "oran": "maktu"
+    },
+    "0061": {
+      "adi": "KKDF (FON)",
+      "tip": "FON",
+      "oran": 0.05,
+      "aciklama": "Kaynak Kullanımını Destekleme Fonu"
+    },
+    "0063": {
+      "adi": "MOTORLU TAŞITLAR VERGİSİ (MTV)",
+      "tip": "MTV",
+      "oran": "degisken",
+      "aciklama": "Araç yaşı, motor hacmi ve türüne göre değişir"
+    },
+    "4063": {
+      "adi": "NOTER HARCI",
+      "tip": "HARC",
+      "oran": "maktu",
+      "aciklama": "Noter işlemlerinden alınan harç"
+    }
+  },
+  "kdv_oranlari": {
+    "1": {
+      "aciklama": "Temel gıda ve tarım ürünleri",
+      "urun_gruplari": [
+        "BAKLIYAT",
+        "UN",
+        "EKMEK",
+        "SÜT",
+        "YUMURTA",
+        "ET",
+        "SEBZE",
+        "MEYVE",
+        "TAHIL",
+        "YAĞ",
+        "ŞEKER"
+      ],
+      "anahtar_kelimeler": [
+        "buğday",
+        "arpa",
+        "pirinç",
+        "bulgur",
+        "nohut",
+        "mercimek",
+        "fasulye",
+        "çay",
+        "şeker",
+        "sıvı yağ",
+        "zeytin",
+        "yoğurt",
+        "peynir",
+        "tereyağı"
+      ],
+      "gtip_kodu": "I Sayılı Liste"
+    },
+    "10": {
+      "aciklama": "Tekstil, giyim, yeme-içme, otel, kültürel hizmetler",
+      "urun_gruplari": [
+        "TEKSTIL",
+        "GIYIM",
+        "YIYECEK",
+        "ICECEK",
+        "OTEL",
+        "RESTORAN",
+        "KULTUREL_HIZMETLER"
+      ],
+      "anahtar_kelimeler": [
+        "gömlek",
+        "pantolon",
+        "elbise",
+        "etek",
+        "ceket",
+        "mont",
+        "ayakkabı",
+        "kola",
+        "su",
+        "ayran",
+        "kahve",
+        "çorba",
+        "pide",
+        "dürüm",
+        "konaklama",
+        "sinema",
+        "tiyatro",
+        "konser"
+      ],
+      "gtip_kodu": "II Sayılı Liste"
+    },
+    "20": {
+      "aciklama": "Standart oran - listelerde yer almayan her şey",
+      "urun_gruplari": [
+        "ELEKTRONIK",
+        "MOBILYA",
+        "BEYAZ_ESYA",
+        "OTO",
+        "AKARYAKIT",
+        "HIZMET",
+        "INSAAT",
+        "DIGER"
+      ],
+      "anahtar_kelimeler": [
+        "telefon",
+        "bilgisayar",
+        "tablet",
+        "televizyon",
+        "buzdolabı",
+        "çamaşır makinesi",
+        "bulaşık makinesi",
+        "fırın",
+        "koltuk",
+        "masa",
+        "yemek masası",
+        "otomobil",
+        "benzin",
+        "motorin",
+        "inşaat malzemesi",
+        "boya",
+        "çimento",
+        "demir"
+      ],
+      "gtip_kodu": "III Sayılı Liste"
+    }
+  },
+  "otv_oranlari": {
+    "I_Sayili_Liste": {
+      "aciklama": "Alkollü içecekler, tütün mamülleri, kolalı gazozlar",
+      "urunler": [
+        {
+          "adi": "Bira",
+          "oran": "maktu",
+          "birim": "Litre",
+          "oran_tl": "Güncel Resmi Gazete'den kontrol edilmeli"
+        },
+        {
+          "adi": "Şarap",
+          "oran": "maktu",
+          "birim": "Litre",
+          "oran_tl": "Güncel Resmi Gazete'den kontrol edilmeli"
+        },
+        {
+          "adi": "Rakı",
+          "oran": "maktu",
+          "birim": "Litre",
+          "oran_tl": "Güncel Resmi Gazete'den kontrol edilmeli"
+        },
+        {
+          "adi": "Sigara",
+          "oran": "maktu + nispi",
+          "birim": "Paket",
+          "oran_tl": "Güncel Resmi Gazete'den kontrol edilmeli"
+        },
+        {
+          "adi": "Kolalı Gazoz",
+          "oran": "maktu",
+          "birim": "Litre",
+          "oran_tl": "Güncel Resmi Gazete'den kontrol edilmeli"
+        }
+      ],
+      "kaynak": "Resmi Gazete, 2026/14"
+    },
+    "II_Sayili_Liste": {
+      "aciklama": "Dayanıklı tüketim malları, elektronik, otomobil (ÖTV)",
+      "urunler": [
+        {
+          "adi": "Otomobil (1.6L altı)",
+          "oran": "45%",
+          "aciklama": "Motor hacmine göre değişir"
+        },
+        {
+          "adi": "Otomobil (1.6L üstü)",
+          "oran": "80%",
+          "aciklama": "Motor hacmine göre değişir"
+        },
+        {
+          "adi": "Beyaz Eşya",
+          "oran": "6.7%",
+          "aciklama": "Buzdolabı, çamaşır makinesi vb."
+        },
+        {
+          "adi": "Elektronik",
+          "oran": "6.7%",
+          "aciklama": "TV, monitör, ses sistemi vb."
+        },
+        {
+          "adi": "Mobilya",
+          "oran": "6.7%",
+          "aciklama": "Mobilya grubu"
+        }
+      ],
+      "kaynak": "ÖTV Kanunu, II Sayılı Liste"
+    },
+    "III_Sayili_Liste": {
+      "aciklama": "Akaryakıt ve petrol ürünleri",
+      "urunler": [
+        {
+          "adi": "Benzin",
+          "oran": "maktu",
+          "birim": "Litre",
+          "oran_tl": "Güncel Resmi Gazete'den kontrol edilmeli"
+        },
+        {
+          "adi": "Motorin",
+          "oran": "maktu",
+          "birim": "Litre",
+          "oran_tl": "Güncel Resmi Gazete'den kontrol edilmeli"
+        },
+        {
+          "adi": "LPG",
+          "oran": "maktu",
+          "birim": "Litre",
+          "oran_tl": "Güncel Resmi Gazete'den kontrol edilmeli"
+        }
+      ],
+      "kaynak": "ÖTV Kanunu, III Sayılı Liste"
+    },
+    "IV_Sayili_Liste": {
+      "aciklama": "Sigara kağıdı, puro, diğer tütün ürünleri",
+      "urunler": [
+        {
+          "adi": "Puro",
+          "oran": "maktu",
+          "birim": "Adet",
+          "oran_tl": "Güncel Resmi Gazete'den kontrol edilmeli"
+        },
+        {
+          "adi": "Sigara Kağıdı",
+          "oran": "maktu",
+          "birim": "Paket",
+          "oran_tl": "Güncel Resmi Gazete'den kontrol edilmeli"
+        }
+      ],
+      "kaynak": "ÖTV Kanunu, IV Sayılı Liste"
+    }
+  },
+  "harclar": {
+    "pasaport": {
+      "aciklama": "Pasaport harcı",
+      "oran": "maktu",
+      "birim": "TL",
+      "detay": "Süresine göre değişir (6 ay, 1 yıl, 2 yıl, 3 yıl)",
+      "kaynak": "Harçlar Kanunu, Resmi Gazete"
+    },
+    "ehliyet": {
+      "aciklama": "Sürücü belgesi harcı",
+      "oran": "maktu",
+      "birim": "TL",
+      "detay": "Yeni ehliyet, yenileme, değiştirme işlemleri",
+      "kaynak": "Harçlar Kanunu, Resmi Gazete"
+    },
+    "tapu": {
+      "aciklama": "Tapu işlemleri harcı",
+      "oran": "0.04",
+      "birim": "Oran",
+      "detay": "Gayrimenkul devir işlemlerinde (binde 40)",
+      "kaynak": "Harçlar Kanunu, Resmi Gazete"
+    },
+    "noter": {
+      "aciklama": "Noter işlemleri harcı",
+      "oran": "maktu",
+      "birim": "TL",
+      "detay": "Vekaletname, satış, kira sözleşmesi gibi işlemler",
+      "kaynak": "Harçlar Kanunu, Resmi Gazete"
+    },
+    "vize": {
+      "aciklama": "Vize işlemleri harcı",
+      "oran": "maktu",
+      "birim": "TL",
+      "detay": "Pasaport vize işlemleri",
+      "kaynak": "Harçlar Kanunu, Resmi Gazete"
+    }
+  },
+  "sektor_ozel_kurallar": {
+    "restoran": {
+      "yiyecek_kdv": 10,
+      "alkol_kdv": 20,
+      "alkol_otv_kodu": "0075",
+      "ic_ice_alkolsuz_kdv": 10,
+      "paket_servis_kdv": 10
+    },
+    "otel": {
+      "konaklama_kdv": 10,
+      "yiyecek_kdv": 10,
+      "alkol_kdv": 20,
+      "alkol_otv_kodu": "0075",
+      "spa_sauna_kdv": 20,
+      "toplu_oda_kdv": 10
+    },
+    "market": {
+      "gida_kdv": 1,
+      "icicek_kdv": 1,
+      "temizlik_kdv": 20,
+      "kozmetik_kdv": 20,
+      "alkol_kdv": 20,
+      "alkol_otv_kodu": "0075",
+      "tutun_kdv": 20,
+      "tutun_otv_kodu": "0076"
+    },
+    "elektronik": {
+      "telefon_kdv": 20,
+      "telefon_otv": "6.7%",
+      "bilgisayar_kdv": 20,
+      "bilgisayar_otv": "6.7%",
+      "tv_kdv": 20,
+      "tv_otv": "6.7%",
+      "otv_kodu": "II_Sayili_Liste"
+    },
+    "otomotiv": {
+      "otomobil_kdv": 20,
+      "otomobil_otv": "45-80%",
+      "otv_kodu": "II_Sayili_Liste",
+      "mtv_hesaplama": "Motor hacmi ve yaşa göre"
+    },
+    "akaryakit": {
+      "benzin_kdv": 20,
+      "benzin_otv": "maktu",
+      "motorin_kdv": 20,
+      "motorin_otv": "maktu",
+      "otv_kodu": "III_Sayili_Liste"
+    }
+  },
+  "istisnalar": {
+    "ihracat": {
+      "kdv_istisna": "0%",
+      "aciklama": "İhracat teslimleri KDV'den istisnadır"
+    },
+    "diger_istisnalar": {
+      "egitim": "KDV istisnası",
+      "saglik": "KDV istisnası",
+      "arazi_satim": "KDV istisnası",
+      "ozel_tuketim": "Özel tüketim istisnaları",
+      "aciklama": "Mevzuatta belirtilen diğer istisna durumları"
+    }
+  },
+  "stopaj_oranlari": {
+    "001": {
+      "aciklama": "Ücret ödemeleri",
+      "oran": "15-35%",
+      "dilimli": true
+    },
+    "002": {
+      "aciklama": "Serbest meslek ödemeleri",
+      "oran": "20%",
+      "dilimli": false
+    },
+    "003": {
+      "aciklama": "Kira ödemeleri",
+      "oran": "20%",
+      "dilimli": false
+    },
+    "004": {
+      "aciklama": "Menkul sermaye iradı (faiz)",
+      "oran": "10%",
+      "dilimli": false
+    }
+  },
+  "fonlar": {
+    "0061_KKDF": {
+      "adi": "Kaynak Kullanımını Destekleme Fonu",
+      "oran": 0.05,
+      "aciklama": "Banka ve diğer kredi kuruluşlarından alınan kredilerden kesilir"
+    },
+    "0062": {
+      "adi": "Tasarruf Mevduatı Sigorta Fonu",
+      "oran": 0.02,
+      "aciklama": "Banka mevduatlarından kesilir"
+    }
+  },
+  "guncelleme_notlari": {
+    "onemli_uyari": "Bu JSON'daki maktu ve nispi oranlar (ÖTV, harç, MTV) güncel Resmi Gazete'ye göre kontrol edilmelidir. Oranlar sık değişebilir.",
+    "son_teblig": "Resmi Gazete, 2026/14",
+    "oneri": "Fatura kesimi ve beyanname işlemlerinde GİB'in resmi sistemini (https://www.gib.gov.tr) referans alın."
+  }
+}
