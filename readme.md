@@ -1,270 +1,47 @@
-1. SİSTEM MODÜLLERİ (ANA YAPI)
+# MuhasebeAI
 
-MUHASEBEAI
-│
-├── 1. MOBİL UYGULAMA (React Native / Flutter)
-│   ├── 1.1. Belge Yükleme Modülü
-│   ├── 1.2. Kontrol Modülü
-│   ├── 1.3. Raporlama Modülü
-│   ├── 1.4. Ay Sonu Modülü
-│   └── 1.5. Ayarlar Modülü
-│
-├── 2. BACKEND (FastAPI + Python)
-│   ├── 2.1. API Gateway
-│   ├── 2.2. Gemini Entegrasyonu
-│   ├── 2.3. İşleme Motoru
-│   ├── 2.4. Doğrulama Motoru
-│   └── 2.5. Raporlama Motoru
-│
-├── 3. VERİTABANI (PostgreSQL + Redis)
-│   ├── 3.1. Kullanıcılar
-│   ├── 3.2. Müşteriler
-│   ├── 3.3. Belgeler
-│   ├── 3.4. İşlemler
-│   └── 3.5. Beyanname Verileri
-│
-├── 4. YARDIMCI SERVİSLER
-│   ├── 4.1. Tatil Takvimi API
-│   ├── 4.2. Excel Export
-│   ├── 4.3. PDF Export
-│   └── 4.4. Bildirim Servisi
-│
-└── 5. KONFİGÜRASYON
-    ├── 5.1. KDV Oranları
-    ├── 5.2. Vergi Kodları
-    ├── 5.3. GTİP Eşleştirme
-    └── 5.4. Sistem Ayarları
+Yapay zeka destekli, mali müşavirler ve KOBİ'ler için geliştirilmiş modern bir muhasebe asistanı. Belge yönetimi, KDV beyannamesi hazırlama, gider-gelir takibi ve banka mutabakatı süreçlerini otomatikleştirir.
 
-2. MOBİL UYGULAMA - DETAYLI TASARIM
+---
 
-2.1. Ana Sayfa (Dashboard)
+## Proje Hakkında
 
-┌──────────────────────────────────────────────────────────┐
-│ MUHASEBEAI                                     Bildirim  │
-│ Hoş Geldiniz, Ahmet Bey!                                │
-│ Bugün: 15 Temmuz 2026, Çarşamba                         │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐       │
-│ │   BELGE     │ │   KONTROL   │ │   RAPOR     │       │
-│ │   YÜKLE     │ │  ASİSTANI   │ │  OLUŞTUR    │       │
-│ │  12         │ │  3 Hata     │ │  5 Rapor    │       │
-│ └─────────────┘ └─────────────┘ └─────────────┘       │
-│                                                          │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │ AY SONU BEYANNAME HAZIRLIK                       │    │
-│ │ 25 Temmuz - Kalan: 10 Gün                       │    │
-│ │ [ BEYANNAME HAZIRLA ]                            │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ SON İŞLEMLER                                            │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │ [Onaylandı] 15.07 - Z-Raporu (Kafe XYZ) - 5.000 TL│    │
-│ │ [Onaylandı] 15.07 - Fiş (Migros) - 250 TL        │    │
-│ │ [Eksik] 15.07 - Fatura (Elektrik) - Eksik Bilgi  │    │
-│ │ [İşleniyor] 14.07 - Z-Raporu (Tekstil)           │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ HIZLI İSTATİSTİK                                        │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │ Bu Ay: 245 Belge  │  15 Müşteri  │  4 Hata      │    │
-│ └──────────────────────────────────────────────────┘    │
-└──────────────────────────────────────────────────────────┘
+MuhasebeAI, muhasebe işlemlerini hızlandırmak ve manuel veri girişinden kaynaklanan hataları en aza indirmek amacıyla geliştirilmiştir. Kullanıcılar, fiş, fatura ve Z-raporu görsellerini yükleyerek belgelerin otomatik olarak okunmasını ve veritabanına kaydedilmesini sağlayabilir. Sistem ayrıca, müşteri bazında KDV matrahlarını hesaplayarak beyanname verilerini JSON formatında dışa aktarır.
 
-2.2. Belge Yükleme Modülü
+---
 
-┌──────────────────────────────────────────────────────────┐
-│ <- GERİ                      BELGE YÜKLE                │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│ YÜKLEME SEÇENEKLERİ                                      │
-│                                                          │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  TEK BELGE YÜKLE                                 │    │
-│ │  Tek bir fiş, fatura veya Z-Raporu fotoğrafı    │    │
-│ │  [ FOTOĞRAF ÇEK ]  [ GALERİDEN SEÇ ]             │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  TOPLU BELGE YÜKLE (ÖNERİLEN)                   │    │
-│ │  Birden fazla belgeyi sırayla fotoğrafla        │    │
-│ │  [ TOPLU FOTOĞRAF ÇEKİMİNE BAŞLA ]               │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  BELGE TÜRÜ SEÇ                                 │    │
-│ │  o Fiş (Alışveriş)                              │    │
-│ │  o Fatura (Tedarikçi)                           │    │
-│ │  o Z-Raporu (Gün Sonu)                          │    │
-│ │  o Banka Ekstresi                               │    │
-│ │  o Diğer                                        │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  MÜŞTERİ SEÇ                                    │    │
-│ │  [ Kafe XYZ v ]                                 │    │
-│ │  [ + Yeni Müşteri Ekle ]                        │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  TARİH BİLGİSİ                                  │    │
-│ │  [ 15.07.2026 ] (Otomatik Algılandı)            │    │
-│ │  [ Düzenle ]                                    │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ [ BAŞLAT ]  [ TASLAK OLARAK KAYDET ]                    │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
+## Kullanılan Teknolojiler
 
-2.3. Toplu Belge Yükleme Arayüzü
+- Backend: Python, FastAPI, PostgreSQL, SQLAlchemy
+- Yapay Zeka: Google Gemini (OCR ve belge anlama)
+- Frontend: React, TypeScript, Tailwind CSS, Recharts
+- Veri İşleme: Pandas, NumPy
+- Deployment: Uvicorn, Docker
 
-┌──────────────────────────────────────────────────────────┐
-│ <- GERİ            TOPLU BELGE YÜKLE (12/50)             │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│ KAMERA ARAYÜZÜ                                           │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │                                                  │    │
-│ │              [KAMERA GÖRÜNTÜSÜ]                  │    │
-│ │                                                  │    │
-│ │    ┌────────────────────────────────┐            │    │
-│ │    │  Belgeyi kareye yerleştirin    │            │    │
-│ │    └────────────────────────────────┘            │    │
-│ │                                                  │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ İLERLEME                                                 │
-│ ████████████░░░░░░░░░░░░░░ 12/50 (%24)                  │
-│                                                          │
-│ SON OKUNAN BELGE                                         │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │ Migros - 15.07.2026 - 250 TL                     │    │
-│ │ [OKUNDU] KDV: %1 (GIDA) - 2.50 TL                │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ BEKLEYEN BELGELER                                        │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │ 13. Z-Raporu (Kafe XYZ) - Bekliyor              │    │
-│ │ 14. Fiş (Carrefour) - Bekliyor                  │    │
-│ │ 15. Fatura (Elektrik) - Bekliyor                │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ [ DEVAM ET ]  [ DURDUR ]  [ İŞLEMİ TAMAMLA ]             │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
+---
 
-2.4. Kontrol Asistanı Modülü
+## Öne Çıkan Özellikler
 
-┌──────────────────────────────────────────────────────────┐
-│ <- GERİ                       KONTROL ASİSTANI           │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│ KONTROL ÖZETİ                                            │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  KRİTİK HATALAR: 1                               │    │
-│ │  UYARILAR: 2                                     │    │
-│ │  DOĞRU BELGELER: 45                              │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ KRİTİK HATALAR (1)                                       │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  MATEMATİKSEL HATA                               │    │
-│ │  Belge: Migros Fişi - 15.07.2026                │    │
-│ │  Hata: Net(100) + KDV(18) = 118                 │    │
-│ │  Brüt: 120 TL yazıyor (2 TL fark)               │    │
-│ │  [ DÜZELT ]  [ SİL ]                            │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ UYARILAR (2)                                             │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  EKSİK BELGE                                     │    │
-│ │  Müşteri: Kafe XYZ - 14.07.2026                 │    │
-│ │  Eksik: Z-Raporu (Günlük satış)                 │    │
-│ │  [ EKLE ]  [ GÖRMEZDEN GEL ]                    │    │
-│ └──────────────────────────────────────────────────┘    │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  MUTABAKAT UYUŞMAZLIĞI                          │    │
-│ │  Z-Raporu: 10.000 TL - Banka: 9.500 TL          │    │
-│ │  Fark: 500 TL (POS komisyonu olabilir)          │    │
-│ │  [ DETAY ]  [ ONAYLA ]                          │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ DOĞRU BELGELER (45)                                      │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  45 belge doğru okundu. Detaylar için tıklayın.  │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ [ RAPOR OLUŞTUR ]  [ TÜMÜNÜ ONAYLA ]                    │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
+### Belge Yönetimi
 
-2.5. Ay Sonu Beyanname Modülü
+Kullanıcılar, fiş, fatura ve Z-raporu görsellerini tekli veya toplu olarak sisteme yükleyebilir. Google Gemini modeli, yüklenen belgeleri okuyarak firma adı, vergi numarası, tarih ve ürün bilgilerini çıkarır. KDV oranları ürün bazında tespit edilir ve belge otomatik olarak veritabanına kaydedilir.
 
-┌──────────────────────────────────────────────────────────┐
-│ <- GERİ                    AY SONU BEYANNAME             │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│ BEYANNAME ÖZETİ - TEMMUZ 2026                            │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  Müşteri: Kafe XYZ                              │    │
-│ │  Dönem: Temmuz 2026                             │    │
-│ │  Toplam Gelir: 150.000 TL                       │    │
-│ │  Toplam Gider: 95.000 TL                        │    │
-│ │  Brüt Kar: 55.000 TL                            │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ KDV HESAPLAMA                                            │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  GELİR KDV (Tahsil Edilen)                       │    │
-│ │  |- %1 Matrah: 50.000 TL -> KDV: 500 TL         │    │
-│ │  |- %10 Matrah: 30.000 TL -> KDV: 3.000 TL      │    │
-│ │  |- %20 Matrah: 70.000 TL -> KDV: 14.000 TL     │    │
-│ │  Toplam Gelir KDV: 17.500 TL                     │    │
-│ │                                                   │    │
-│ │  GİDER KDV (Ödenen)                              │    │
-│ │  |- %1 Matrah: 20.000 TL -> KDV: 200 TL         │    │
-│ │  |- %10 Matrah: 15.000 TL -> KDV: 1.500 TL      │    │
-│ │  |- %20 Matrah: 60.000 TL -> KDV: 12.000 TL     │    │
-│ │  Toplam Gider KDV: 13.700 TL                     │    │
-│ │                                                   │    │
-│ │  ÖDENECEK KDV = 17.500 - 13.700 = 3.800 TL      │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ KONTROL SONUÇLARI                                        │
-│ ┌──────────────────────────────────────────────────┐    │
-│ │  [OK] Tüm belgeler tamam                        │    │
-│ │  [OK] KDV hesaplamaları tutarlı                 │    │
-│ │  [OK] Banka mutabakatı sağlanmış                │    │
-│ └──────────────────────────────────────────────────┘    │
-│                                                          │
-│ [ VERİYİ AL ]  [ RAPORU İNDİR ]                          │
-│ [ LUCA'YA GÖNDER ]  [ BEYANNAMEYİ HAZIRLA ]             │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
-┌─────────────────────────────────────────────────────────────────┐
-│  MUHASEBEAI                          Ahmet Bey (Mali Müşavir)   │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  MÜŞTERİLERİM                            [+ Yeni Müşteri Ekle]  │
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │  Müşteri ara...                                         │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                                                                  │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐            │
-│  │  KAFE       │  │  TEKSTİL    │  │  OTEL       │            │
-│  │  XYZ        │  │  ABC        │  │  GRAND      │            │
-│  │  45 Belge   │  │  32 Belge   │  │  28 Belge   │            │
-│  │  12.500 TL  │  │  8.200 TL   │  │  15.300 TL  │            │
-│  │  %10 KDV    │  │  %20 KDV    │  │  %10 KDV    │            │
-│  └─────────────┘  └─────────────┘  └─────────────┘            │
-│                                                                  │
-│  ┌─────────────┐  ┌─────────────┐                              │
-│  │  MARKET     │  │  TAMİR      │                              │
-│  │  YILDIZ     │  │  OTO        │                              │
-│  │  18 Belge   │  │  12 Belge   │                              │
-│  │  4.800 TL   │  │  3.200 TL   │                              │
-│  │  %1 KDV     │  │  %20 KDV    │                              │
-│  └─────────────┘  └─────────────┘                              │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+### KDV Beyanname Hazırlama
+
+Sistem, müşteri bazında aylık KDV matrahını, tahsil edilen ve ödenen KDV tutarlarını hesaplar. Net KDV pozitif ise ödenecek, negatif ise iade alınacak olarak işaretlenir. Hesaplanan veriler JSON formatında dışa aktarılabilir.
+
+### Müşteri ve Belge Takibi
+
+Müşteri ekleme, silme ve güncelleme işlemleri yapılabilir. Her müşteri için yüklenen belgeler listelenir ve toplam net, KDV ve brüt tutarlar görüntülenir.
+
+### Banka Mutabakatı
+
+Excel veya CSV formatındaki banka ekstreleri sisteme yüklenerek, mevcut hareketlerle eşleştirme yapılabilir. Bu sayede banka hesap hareketleri ile muhasebe kayıtları karşılaştırılabilir.
+
+### Raporlama
+
+KDV durumu, matrah dağılımı ve aylık gelir-gider grafikleri ile kullanıcılara kapsamlı bir finansal özet sunulur.
+
+---
+
+## Proje Yapısı
